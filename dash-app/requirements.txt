@@ -1,0 +1,10 @@
+numpy<2
+dash
+dash_bootstrap_components
+plotly
+yfinance
+cufflinks
+requests
+gunicorn
+python-dotenv
+statsmodels
