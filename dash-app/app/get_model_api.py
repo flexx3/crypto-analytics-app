@@ -11,7 +11,7 @@ class get_predictions:
             #2. json data to send to path
             json= {'ticker':f'{ticker}'}
             #3. response for the post request
-            response= requests.post(url=url, json=json)
+            response= requests.post(url=url, json=json, timeout=30)
             response.json()
         fit_model(ticker)
         #get forecasts    
@@ -22,7 +22,7 @@ class get_predictions:
             "horizon":horizon
         }
         #3. response for the post request
-        response= requests.post(url=url, json=json)
+        response= requests.post(url=url, json=json, timeout=30)
         data = response.json()
         data= pd.DataFrame.from_dict(data)
         data= data[['forecast']]
@@ -38,7 +38,7 @@ class get_predictions:
             #2. json data to send to path
             json= {'ticker':f'{ticker}'}
             #3. response for the post request
-            response= requests.post(url=url, json=json)
+            response= requests.post(url=url, json=json, timeout=30)
             response.json()
         fit_model(ticker)
         #get forecasts    
@@ -49,7 +49,7 @@ class get_predictions:
             "horizon":horizon
         }
         #3. response for the post request
-        response= requests.post(url=url, json=json)
+        response= requests.post(url=url, json=json, timeout=30)
         data = response.json()
         data= pd.DataFrame.from_dict(data)
         data= data[['forecasts']]
