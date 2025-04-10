@@ -2,13 +2,14 @@ numpy<2
 dash
 dash_bootstrap_components
 plotly
+requests==2.32.3
+pandas==2.2.2
 polars==1.25.2
 duckdb==1.2.1
 sqlalchemy==2.0.34
 duckdb-engine==0.17.0
 pyarrow>=14.0.0
 cufflinks
-requests
 gunicorn
 python-dotenv
 statsmodels
