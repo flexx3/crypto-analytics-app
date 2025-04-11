@@ -1,7 +1,7 @@
 numpy<2
-dash
-dash_bootstrap_components
-plotly
+dash==2.18.2
+dash_bootstrap_components==1.6.0
+plotly==5.24.1
 requests==2.32.3
 pandas==2.2.2
 polars==1.25.2
@@ -9,7 +9,7 @@ duckdb==1.2.1
 sqlalchemy==2.0.34
 duckdb-engine==0.17.0
 pyarrow>=14.0.0
-cufflinks
+cufflinks==0.17.3
 gunicorn
 python-dotenv
-statsmodels
+statsmodels==0.14.2
