@@ -13,3 +13,4 @@ cufflinks==0.17.3
 gunicorn
 python-dotenv
 statsmodels==0.14.2
+pmdarima==2.0.4
