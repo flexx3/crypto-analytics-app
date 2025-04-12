@@ -17,7 +17,7 @@ class get_predictions:
         #reset index
         predictions_data= df.reset_index()
         #name columns
-        predictions_data.columns= ['Date', 'Close Price Forecast']
+        predictions_data.columns= ['Date', f'{ticker} Close Price Forecast']
         #set date column to index
         predictions_data.set_index('Date')
         return predictions_data
@@ -46,6 +46,6 @@ class get_predictions:
         data = response.json()
         data= pd.DataFrame.from_dict(data)
         data= data[['forecasts']]
-        data= data.rename(columns={'forecasts':'Projected Volatility'})
+        data= data.rename(columns={'forecasts':f'{ticker} Projected Volatility'})
         data.index.name= 'Date'
         return data.reset_index()
