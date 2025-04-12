@@ -42,30 +42,30 @@ class Arima:
             repo= SqlRepository(uri=f"duckdb:///{os.environ.get('DB_NAME')}")
             #load data from table
             df= repo.read_table(self.ticker)
-        #     #check if data corresponds to the most recent date
-        #     if (df.is_empty()) or (df['Date'].max() != datetime.strptime(today, '%Y-%m-%d').date()):
-        #         api= api_data(self.ticker)
-        #         data= api.get_data()
-        #         repo.insert_data(table_name=self.ticker, records=data)
-        #         #load data from table
-        #         df= repo.read_table(self.ticker)
-        #     else:
-        #         df= df
-        # #if table does not exists in database
-        # else:
-        #     #instantiate 'api_data' class from data.py library
-        #     api= api_data(self.ticker)
-        #     data= api.get_data()
-        #     #instantiate 'sqlrepo' class from data.py library
-        #     repo= SqlRepository(uri=f"duckdb:///{os.environ.get('DB_NAME')}")
-        #     #setup connection to execute and commit changes to the db based on the below query
-        #     with engine.connect() as conn:
-        #         conn.execute(text(f'Drop Table If Exists "{self.ticker}"'))
-        #         conn.commit()
-        #     #insert data into database
-        #     repo.insert_data(table_name=self.ticker, records=data)
-        #     #load data from table
-        #     df=repo.read_table(self.ticker)
+            #check if data corresponds to the most recent date
+            if (df.is_empty()) or (df['Date'].max() != datetime.strptime(today, '%Y-%m-%d').date()):
+                api= api_data(self.ticker)
+                data= api.get_data()
+                repo.insert_data(table_name=self.ticker, records=data)
+                #load data from table
+                df= repo.read_table(self.ticker)
+            else:
+                df= df
+        #if table does not exists in database
+        else:
+            #instantiate 'api_data' class from data.py library
+            api= api_data(self.ticker)
+            data= api.get_data()
+            #instantiate 'sqlrepo' class from data.py library
+            repo= SqlRepository(uri=f"duckdb:///{os.environ.get('DB_NAME')}")
+            #setup connection to execute and commit changes to the db based on the below query
+            with engine.connect() as conn:
+                conn.execute(text(f'Drop Table If Exists "{self.ticker}"'))
+                conn.commit()
+            #insert data into database
+            repo.insert_data(table_name=self.ticker, records=data)
+            #load data from table
+            df=repo.read_table(self.ticker)
         return df
     
     #function to get d
