@@ -25,7 +25,7 @@ class get_predictions:
     #get volatility  model-api forecasts
     def get_volatility_model_api(self, ticker, horizon):
         #fit model using '/fit' path
-        def fit_model(ticker):
+        def fit_model(ticker=ticker):
             url= "https://volatility-model-api.onrender.com/fit"
             #2. json data to send to path
             json= {"ticker":ticker}
