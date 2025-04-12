@@ -28,7 +28,7 @@ class get_predictions:
         def fit_model(ticker):
             url= "http://volatility-model-api.onrender.com/fit"
             #2. json data to send to path
-            json= {'ticker':f'{ticker}'}
+            json= {'ticker':{ticker}}
             #3. response for the post request
             response= requests.post(url=url, json=json)
             response.json()
@@ -38,7 +38,7 @@ class get_predictions:
         url= "http://volatility-model-api.onrender.com/predict"
         #2. json data to send to path
         json= {
-            "ticker":f"{ticker}",
+            "ticker":{ticker},
             "horizon":horizon
         }
         #3. response for the post request
