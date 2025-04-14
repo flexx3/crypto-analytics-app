@@ -24,28 +24,16 @@ class get_predictions:
 
     #get volatility  model-api forecasts
     def get_volatility_model_api(self, ticker, horizon):
-        #fit model using '/fit' path
-        def fit_model(ticker):
-            url= "https://volatility-model-api.onrender.com/fit"
-            #2. json data to send to path
-            json= {'ticker':ticker}
-            #3. response for the post request
-            response= requests.post(url=url, json=json, timeout=50)
-            response.json()
-        
-        fit_model(ticker=ticker)
-        #get forecasts    
-        url= "https://volatility-model-api.onrender.com/predict"
-        #2. json data to send to path
-        json= {
-            'ticker':ticker,
-            'horizon':horizon
-        }
-        #3. response for the post request
-        response= requests.post(url=url, json=json, timeout=50)
-        data = response.json()
-        data= pd.DataFrame.from_dict(data)
-        data= data[['forecasts']]
-        data= data.rename(columns={'forecasts':f'{ticker} Projected Volatility'})
-        data.index.name= 'Date'
-        return data.reset_index()
+       #instantiate model
+        model= Garch_model(ticker)
+        #fit model to data
+        model.fit()
+        #get predictions
+        predictions= model.forecast_volatility(horizon)
+         #convert predictions data into a dataframe
+        df= pd.DataFrame.from_dict(predictions.to_dict(), orient='index')
+        predictions_data= df.reset_index()
+        #name columns
+        predictions_data.columns= ['Date', f'{ticker} Volatility Forecast']
+        #set date column to index
+        return predictions_data 
