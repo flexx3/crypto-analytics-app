@@ -1,6 +1,7 @@
 import pandas as pd
 import requests
 from model1 import Arima
+from volatility_model import Garch_model
 
 class get_predictions:
 
